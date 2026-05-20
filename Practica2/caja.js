@@ -1,25 +1,21 @@
+const { pedidos } = require('./datos')
+
 const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
 })
-
-let pedidos = [
-    { nombre: "Coca Cola", cantidad: 2, subtotal: 40 },
-    { nombre: "Pepsi", cantidad: 1, subtotal: 18 },
-    { nombre: "Fanta", cantidad: 3, subtotal: 66 }
-]
 
 let total = 0
 
 function calcularTotal() {
     total = 0
     for (let pedido of pedidos) {
-        total += pedido.subtotal
+        total += pedido.total
     }
 }
 
 function mostrarMenu() {
-    console.log("\n1. Listar pedidos")
+    console.log("1. Listar pedidos")
     console.log("2. Ver total acumulado")
     console.log("3. Salir")
 
