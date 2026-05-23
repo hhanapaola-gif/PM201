@@ -1,14 +1,17 @@
 let productos = [
-    { nombre: "Latte Caliente", precio: 20 },
-    { nombre: "Latte", precio: 18 },
-    { nombre: "Jugo de Naranja", precio: 22 },
-    { nombre: "Machiatto", precio: 19 }
+    { nombre: "Latte Caliente", precio: 20, tipo: "Bebidas", promocion: "En promoción" },
+    { nombre: "Latte", precio: 18, tipo: "Bebidas", promocion: "" },
+    { nombre: "Jugo de Naranja", precio: 22, tipo: "Bebidas", promocion: "" },
+    { nombre: "Pay", precio: 19, tipo: "Postres", promocion: "" }
 ]
 
 let pedidos = [
-    { nombre: "Latte Caliente", cantidad: 3, total: 60 },
-    { nombre: "Latte", cantidad: 1, total: 18 },
-    { nombre: "Jugo de naranja", cantidad: 2, total: 44 }
+    { nombre: "Latte Caliente", cantidad: 1, total: 20 }
 ]
 
-module.exports = { productos, pedidos }
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
+
+module.exports = { productos, pedidos, readline }

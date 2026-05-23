@@ -1,9 +1,6 @@
-const { pedidos } = require('./datos')
-
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+const { pedidos, readline } = require('./datos')
+const mostrarMenuCocina = require('./cocina')
+const mostrarMenuCliente = require('./cliente')
 
 let subtotal = 0
 let iva = 0
@@ -13,41 +10,62 @@ function calcularTotales() {
     subtotal = 0
 
     for (let pedido of pedidos) {
-        subtotal += pedido.total
+        if (pedido.total) {
+            subtotal += pedido.total
+        }
     }
 
     iva = subtotal * 0.16
     total = subtotal + iva
 }
 
-function mostrarMenu() {
-
+function mostrarMenuPedidos(volver) {
+    console.log("--- Menú Caja ---")
     console.log("1. Listar pedidos")
     console.log("2. Ver subtotal, IVA y total del pedido")
-    console.log("3. Salir")
+    console.log("3. Volver al menú principal")
 
     readline.question("Seleccione una opción: ", opcion => {
-
         if (opcion === "1") {
-
             console.table(pedidos)
-            mostrarMenu()
-
+            mostrarMenuPedidos(volver)
         } else if (opcion === "2") {
             calcularTotales()
             console.log("Subtotal: $" + subtotal)
             console.log("IVA: $" + iva)
             console.log("Total: $" + total)
-            mostrarMenu()
-
+            mostrarMenuPedidos(volver)
         } else if (opcion === "3") {
-            console.log("Hasta luego.")
-            readline.close()
+            volver()
         } else {
-
             console.log("Opción no válida.")
-            mostrarMenu()
+            mostrarMenuPedidos(volver)
         }
     })
 }
-mostrarMenu()
+
+function mostrarMenuPrincipal() {
+    console.log("=== Menú Principal ===")
+    console.log("1. Menú Cliente")
+    console.log("2. Menú Cocina")
+    console.log("3. Menú Caja")
+    console.log("4. Salir")
+
+    readline.question("Seleccione una opción: ", opcion => {
+        if (opcion === "1") {
+            mostrarMenuCliente(mostrarMenuPrincipal)
+        } else if (opcion === "2") {
+            mostrarMenuCocina(mostrarMenuPrincipal)
+        } else if (opcion === "3") {
+            mostrarMenuPedidos(mostrarMenuPrincipal)
+        } else if (opcion === "4") {
+            console.log("Hasta luego.")
+            readline.close()
+        } else {
+            console.log("Opción no válida.")
+            mostrarMenuPrincipal()
+        }
+    })
+}
+
+mostrarMenuPrincipal()
