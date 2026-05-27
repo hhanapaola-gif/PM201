@@ -6,7 +6,7 @@ let productos = [
 ]
 
 let pedidos = [
-    { nombre: "Latte Caliente", cantidad: 1, total: 20 }
+    { idPedido: 1, nombre: "Latte Caliente", cantidad: 1, total: 20 , status: "En carrito"}
 ]
 
 const readline = require('readline').createInterface({

@@ -20,7 +20,7 @@ function calcularTotales() {
 }
 
 function mostrarMenuPedidos(volver) {
-    console.log("--- Menú Caja ---")
+    console.log("--- Menú caja ---")
     console.log("1. Listar pedidos")
     console.log("2. Ver subtotal, IVA y total del pedido")
     console.log("3. Volver al menú principal")
@@ -45,7 +45,7 @@ function mostrarMenuPedidos(volver) {
 }
 
 function mostrarMenuPrincipal() {
-    console.log("=== Menú Principal ===")
+    console.log("=== Menú principal ===")
     console.log("1. Menú Cliente")
     console.log("2. Menú Cocina")
     console.log("3. Menú Caja")
@@ -67,5 +67,3 @@ function mostrarMenuPrincipal() {
         }
     })
 }
-
-mostrarMenuPrincipal()

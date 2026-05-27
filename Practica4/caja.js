@@ -20,6 +20,11 @@ function calcularTotales() {
     total = subtotal + iva
 }
 
+// ============================================================
+// NUEVO: CALLBACKS
+// Caja expone dos callbacks. El cliente los invoca al terminar
+// el flujo asíncrono del pedido.
+// ============================================================
 function onPedidoListo(idPedido) {
     console.log(">> Caja notificada: pedido #" + idPedido + " LISTO para cobrar")
 }
@@ -46,7 +51,7 @@ function mostrarMenuPedidos(volver) {
             console.log("Total: $" + total)
             mostrarMenuPedidos(volver)
         } else if (opcion === "3") {
-            console.log("1. Éxito")
+            console.log("1. Éxito (por defecto)")
             console.log("2. Error en cocina")
             console.log("3. Falta ingrediente")
             readline.question("Seleccione modo: ", modo => {
