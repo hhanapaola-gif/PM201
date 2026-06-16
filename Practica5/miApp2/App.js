@@ -9,9 +9,11 @@ import { Perfil } from './components/Perfil';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Perfil nombre="Pao" carrera="Sistemas" materia="Móvil" cuatri="9" />
-      <Text>--------------------------------</Text>
-      <Perfil nombre="Ángel" carrera="Mecatrónica" materia="Móvil" cuatri="3" />
+      <Perfil style={styles.tarjetarosa} nombre="Pao" carrera="Sistemas" materia="Móvil" cuatri="9" />
+
+      <Perfil style={styles.tarjetagris} nombre="Ángel" carrera="Mecatrónica" materia="Móvil" cuatri="3" />
+
+      <Perfil style={styles.tarjetarosa} nombre="Pao2" carrera="Sistemas" materia="Móvil" cuatri="9" />
     </View>
   );
 }
@@ -22,6 +24,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'row',
+    flexDirection: 'fiex-end',
   },
+  tarjetarosa:{backgroundColor:'pink'},
+  tarjetagris:{backgroundColor:'gray'},
 });
