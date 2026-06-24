@@ -6,6 +6,8 @@ import React,{useState} from 'react';
 import TarjetasScreen from './TarjetasScreen';
 import Componente1 from './Componente1';
 import PracticaGena from './PracticaGena';
+import PressableScreen from './PressableScreen';
+import SwitchScreen from './SwitchScreen';
 
 /* Zona 2: Main - Componentes  */
 
@@ -18,6 +20,11 @@ export default function App() {
             return <Componente1/>;
         case 'PracticaGena':
             return <PracticaGena/>;
+        case 'pressable':
+            return <PressableScreen/>;
+        case 'Switch':
+            return <SwitchScreen/>;
+
         case 'menu':
             default:
                 return (
@@ -26,6 +33,8 @@ export default function App() {
                         <Button title="Practica tarjetas" onPress={()=>setScreen('tarjetas')}/>
                         <Button title="Practica Componente1" onPress={()=>setScreen('componente1')}/>
                         <Button title="Practica Equipo Genaro" onPress={()=>setScreen('PracticaGena')}/>
+                        <Button title="Practica Pressable" onPress={()=>setScreen('pressable')}/>
+                        <Button title="Practica Switch" onPress={()=>setScreen('Switch')}/>
                     </View>
                 );
     }
