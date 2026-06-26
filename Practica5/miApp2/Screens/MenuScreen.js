@@ -8,6 +8,8 @@ import Componente1 from './Componente1';
 import PracticaGena from './PracticaGena';
 import PressableScreen from './PressableScreen';
 import SwitchScreen from './SwitchScreen';
+import { Componente4_0 } from './Componente4_0';
+import ComponenteAlert from './ComponenteAlert';
 
 /* Zona 2: Main - Componentes  */
 
@@ -24,17 +26,22 @@ export default function App() {
             return <PressableScreen/>;
         case 'Switch':
             return <SwitchScreen/>;
-
+        case 'Componente4_0':
+            return <Componente4_0/>;
+        case 'ComponenteAlert':
+            return <ComponenteAlert />;
         case 'menu':
             default:
                 return (
-                    <View>
+                    <View  style={styles.container}>
                         <Text>MENÚ DE PRACTICAS</Text>
                         <Button title="Practica tarjetas" onPress={()=>setScreen('tarjetas')}/>
                         <Button title="Practica Componente1" onPress={()=>setScreen('componente1')}/>
-                        <Button title="Practica Equipo Genaro" onPress={()=>setScreen('PracticaGena')}/>
+                        <Button title="Practica SafeAreaView" onPress={()=>setScreen('PracticaGena')}/>
                         <Button title="Practica Pressable" onPress={()=>setScreen('pressable')}/>
                         <Button title="Practica Switch" onPress={()=>setScreen('Switch')}/>
+                        <Button title="Practica TextInput" onPress={()=>setScreen('Componente4_0')}/>
+                        <Button title="Practica Alert" onPress={()=>setScreen('ComponenteAlert')}/>
                     </View>
                 );
     }
