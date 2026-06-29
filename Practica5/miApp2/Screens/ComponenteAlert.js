@@ -2,6 +2,7 @@
     import React, { useState } from 'react';
     import { SafeAreaView } from 'react-native-safe-area-context';
 
+    // Parche para que Alert funcione en web
     if (Platform.OS === "web") {
     Alert.alert = (titular, mensaje, botones) => {
         if (botones && botones.length > 0) {
@@ -25,7 +26,7 @@
         }
     };
     }
-
+    // Componente para mostrar alertas con dos o tres botones
     const ComponenteAlert = () => {
     const [message, setMessage] = useState('Sin acción');
 
@@ -34,6 +35,7 @@
         {
             text: 'Cancelar',
             onPress: () => {
+            //console.log('Presiona cancelar');
             setMessage('Presionaste cancelar');
             },
             style: 'cancel',
@@ -41,7 +43,7 @@
         {
             text: 'Aceptar',
             onPress: () => {
-
+            //console.log('Presiona aceptar');
             setMessage('Presionaste aceptar');
             },
         },
