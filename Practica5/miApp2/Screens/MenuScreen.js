@@ -1,7 +1,8 @@
 /* Zona 1: Importaciones de archivos y componentes */
 
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import React,{Component, useEffect, useState} from 'react';
 import TarjetasScreen from './TarjetasScreen';
 import Componente1 from './Componente1';
 import PracticaGena from './PracticaGena';
@@ -11,12 +12,24 @@ import { Componente4_0 } from './Componente4_0';
 import ComponenteAlert from './ComponenteAlert';
 import FlatListScreen from './FlatListScreen';
 import SectionListScreen from './SectionListScreen';
+import { ImagenFondo } from './ImagenFondo';
+import { Home } from './Home';
+import { SplashScreen } from './SplashScreen';
 
 /* Zona 2: Main - Componentes */
 
 export default function App() {
 
     const [screen, setScreen] = useState('menu');
+
+    useEffect(() => {
+        if (screen === 'SplashScreen') {
+            const timer = setTimeout(() => {
+                setScreen('Home');
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [screen]);
 
     switch (screen) {
 
@@ -46,6 +59,15 @@ export default function App() {
 
         case 'SectionListScreen':
             return <SectionListScreen />;
+        
+        case 'ImagenFondo':
+            return <ImagenFondo style={styles.container}/>;
+
+        case 'SplashScreen':
+            return <SplashScreen />;
+
+        case 'Home':
+            return <Home/>;
 
         default:
             return (
@@ -87,6 +109,14 @@ export default function App() {
 
                     <Pressable style={styles.boton} onPress={() => setScreen('SectionListScreen')}>
                         <Text style={styles.textoBoton}>Práctica SectionList</Text>
+                    </Pressable>
+
+                    <Pressable style={styles.boton} onPress={() => setScreen('ImagenFondo')}>
+                        <Text style={styles.textoBoton}>Práctica ImagenFondo</Text>
+                    </Pressable>
+
+                    <Pressable style={styles.boton} onPress={() => setScreen('SplashScreen')}>
+                        <Text style={styles.textoBoton}>Práctica SplashScreen</Text>
                     </Pressable>
 
                 </View>
