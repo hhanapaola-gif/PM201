@@ -15,6 +15,9 @@ import SectionListScreen from './SectionListScreen';
 import { ImagenFondo } from './ImagenFondo';
 import { Home } from './Home';
 import { SplashScreen } from './SplashScreen';
+import { BottomSheet } from '../components/BottomSheet';
+import { Modal } from 'react-native';
+import ComponentesNativosScreen from './ComponentesNativosScreen';
 
 /* Zona 2: Main - Componentes */
 
@@ -69,6 +72,15 @@ export default function App() {
         case 'Home':
             return <Home/>;
 
+        case 'Modal':
+            return <Modal />;
+
+        case 'BottomSheet':
+            return <BottomSheet/>;
+
+        case 'componentesNativos':
+            return <ComponentesNativosScreen />;
+
         default:
             return (
                 <View style={styles.container}>
@@ -119,6 +131,10 @@ export default function App() {
                         <Text style={styles.textoBoton}>Práctica SplashScreen</Text>
                     </Pressable>
 
+                    <Pressable style={styles.boton} onPress={() => setScreen('componentesNativos')}>
+                        <Text style={styles.textoBoton}>Práctica KeyAvoiding y ActivityIndicator</Text>
+                    </Pressable>
+
                 </View>
             );
     }
@@ -160,9 +176,9 @@ const styles = StyleSheet.create({
     },
 
     textoBoton: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+},
 });
