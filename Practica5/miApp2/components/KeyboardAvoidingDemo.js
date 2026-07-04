@@ -1,72 +1,262 @@
-    import React, { useState } from 'react';
-    import {
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {StyleSheet,Text,View,TextInput,Pressable,Alert,FlatList,ImageBackground,Image,ActivityIndicator,KeyboardAvoidingView,Platform,} from 'react-native';
+import {SafeAreaProvider,SafeAreaView,} from 'react-native-safe-area-context';
 
-    export default function KeyboardAvoidingDemo() {
-    const [nombre, setNombre] = useState('');
+export default function App() {
+
+    const [mostrarSplash, setMostrarSplash] = useState(true);
+    const [titulo, setTitulo] = useState('');
+    const [autor, setAutor] = useState('');
+    const [genero, setGenero] = useState('');
+    const [libros, setLibros] = useState([]);
+    const [guardando, setGuardando] = useState(false);
+
     const behavior = Platform.OS === 'ios' ? 'padding' : 'height';
 
+    useEffect(() => {
+        setTimeout(() => {
+        setMostrarSplash(false);
+        }, 2000);
+    }, []);
+
+    const agregarLibro = () => {
+
+    if (
+        titulo.trim() === '' ||
+        autor.trim() === '' ||
+        genero.trim() === ''
+        ) {
+
+        Alert.alert(
+            'Campos incompletos',
+            'Todos los campos son obligatorios'
+        );
+
+        return;
+        }
+
+        setGuardando(true);
+        
+        setTimeout(() => {
+
+        const nuevoLibro = {
+            id: Date.now().toString(),
+            titulo: titulo,
+            autor: autor,
+            genero: genero,
+        };
+
+        setLibros([...libros, nuevoLibro]);
+        setTitulo('');
+        setAutor('');
+        setGenero('');
+        setGuardando(false);
+
+        Alert.alert(
+            'Libro agregado',
+            'El libro se guardó correctamente :)'
+        );
+        }, 4000);
+    };
+
+    if (mostrarSplash) {
+
+        return (
+        <SafeAreaProvider>
+            <SafeAreaView style={styles.splash}>
+
+            <Image
+                source={require('./assets/libros.jpeg')}
+                style={styles.imagen}
+            />
+
+            <Text style={styles.textoSplash}>
+                Mis libros
+            </Text>
+
+            </SafeAreaView>
+        </SafeAreaProvider>
+        );
+    }
+
     return (
-        <KeyboardAvoidingView
-        behavior={behavior}
-        style={styles.container}
-        enabled
+
+        <SafeAreaProvider>
+        <ImageBackground
+            source={require('./assets/fondo.jpeg')}
+            style={styles.fondo}
         >
-        <Text style={styles.titulo}>KeyboardAvoidingView</Text>
 
-        <Text style={styles.descripcion}>
-            Evita que el teclado oculte el campo de texto. En este dispositivo se
-            utiliza behavior="{behavior}".
-        </Text>
+            <SafeAreaView style={styles.contenedor}>
 
-        <TextInput
-            placeholder="Escribe tu nombre"
-            style={styles.input}
-            value={nombre}
-            onChangeText={setNombre}
-            autoCapitalize="words"
-        />
+            <KeyboardAvoidingView
+                style={styles.contenedor}
+                behavior={behavior}
+            >
 
-        <Text style={styles.resultado}>
-            Nombre: {nombre || 'Sin capturar'}
-        </Text>
-        </KeyboardAvoidingView>
+                <Text style={styles.titulo}>
+                Registro de Libros
+                </Text>
+
+                <TextInput
+                style={styles.input}
+                placeholder="Título del libro"
+                value={titulo}
+                onChangeText={setTitulo}
+                />
+
+                <TextInput
+                style={styles.input}
+                placeholder="Autor"
+                value={autor}
+                onChangeText={setAutor}
+                />
+
+                <TextInput
+                style={styles.input}
+                placeholder="Género"
+                value={genero}
+                onChangeText={setGenero}
+                />
+
+                <Pressable
+                style={styles.boton}
+                onPress={agregarLibro}
+                disabled={guardando}
+                >
+
+                {
+                    guardando ? (
+                    <View style={styles.cargando}>
+                        <ActivityIndicator />
+                        <Text style={styles.textoBoton}>
+                        Guardando...
+                        </Text>
+                    </View>
+                    ): 
+                    (
+                    <Text style={styles.textoBoton}>
+                        Agregar libro
+                    </Text>
+                    )
+                }
+
+                </Pressable>
+
+                <Text style={styles.total}>
+                Total de libros: {libros.length}
+                </Text>
+
+
+                <FlatList
+                data={libros}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+
+                    <View style={styles.tarjeta}>
+                    <Text style={styles.tituloLibro}>
+                        {item.titulo}
+                    </Text>
+
+                    <Text>
+                        Autor: {item.autor}
+                    </Text>
+
+                    <Text>
+                        Género: {item.genero}
+                    </Text>
+                    </View>
+                )}
+                />
+
+            </KeyboardAvoidingView>
+
+            </SafeAreaView>
+        </ImageBackground>
+        </SafeAreaProvider>
     );
     }
 
+
     const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 12,
-        elevation: 3,
-        marginBottom: 20,
-        padding: 20,
+    fondo: {
+        flex: 1,
     },
-    titulo: {
-        fontSize: 20,
+
+    contenedor: {
+        flex: 1,
+        padding: 15,
+    },
+
+    splash: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+    },
+
+    imagen: {
+        width: 120,
+        height: 120,
+        resizeMode: 'contain',
+    },
+
+    textoSplash: {
+        fontSize: 25,
         fontWeight: 'bold',
-        marginBottom: 10,
-        textAlign: 'center',
+        marginTop: 15,
     },
-    descripcion: {
-        color: '#444444',
-        lineHeight: 20,
+
+    titulo: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'center',
         marginBottom: 20,
-        textAlign: 'center',
+        color: 'white',
     },
+
     input: {
-        borderColor: '#777777',
+        backgroundColor: 'white',
+        padding: 12,
+        marginBottom: 10,
         borderRadius: 8,
-        borderWidth: 1,
-        marginBottom: 20,
-        padding: 10,
     },
-    resultado: {
-        fontSize: 16,
+
+    boton: {
+        backgroundColor: '#2764c5',
+        padding: 15,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+
+    textoBoton: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+
+    cargando: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+
+    total: {
+        color: 'white',
+        fontSize: 17,
+        fontWeight: 'bold',
+        marginVertical: 15,
+    },
+
+    tarjeta: {
+        backgroundColor: 'white',
+        padding: 15,
+        marginBottom: 10,
+        borderRadius: 8,
+    },
+
+    tituloLibro: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        marginBottom: 5,
     },
     });

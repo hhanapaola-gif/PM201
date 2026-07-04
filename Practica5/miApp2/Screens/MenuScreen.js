@@ -1,8 +1,9 @@
 /* Zona 1: Importaciones de archivos y componentes */
 
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Pressable, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import React,{Component, useEffect, useState} from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import TarjetasScreen from './TarjetasScreen';
 import Componente1 from './Componente1';
 import PracticaGena from './PracticaGena';
@@ -62,80 +63,85 @@ export default function App() {
 
         case 'SectionListScreen':
             return <SectionListScreen />;
-        
+
         case 'ImagenFondo':
-            return <ImagenFondo style={styles.container}/>;
+            return <ImagenFondo style={styles.container} />;
 
         case 'SplashScreen':
             return <SplashScreen />;
 
         case 'Home':
-            return <Home/>;
+            return <Home />;
 
         case 'Modal':
             return <Modal />;
 
         case 'BottomSheet':
-            return <BottomSheet/>;
+            return <BottomSheet />;
 
         case 'componentesNativos':
             return <ComponentesNativosScreen />;
 
         default:
             return (
-                <View style={styles.container}>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <ScrollView
+                        contentContainerStyle={styles.container}
+                        showsVerticalScrollIndicator={false}
+                    >
 
-                    <Text style={styles.titulo}>MENÚ DE PRÁCTICAS</Text>
+                        <Text style={styles.titulo}>MENÚ DE PRÁCTICAS</Text>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('tarjetas')}>
-                        <Text style={styles.textoBoton}>Práctica Tarjetas</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('tarjetas')}>
+                            <Text style={styles.textoBoton}>Práctica Tarjetas</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('componente1')}>
-                        <Text style={styles.textoBoton}>Práctica Componente 1</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('componente1')}>
+                            <Text style={styles.textoBoton}>Práctica Componente 1</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('PracticaGena')}>
-                        <Text style={styles.textoBoton}>Práctica SafeAreaView</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('PracticaGena')}>
+                            <Text style={styles.textoBoton}>Práctica SafeAreaView</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('pressable')}>
-                        <Text style={styles.textoBoton}>Práctica Pressable</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('pressable')}>
+                            <Text style={styles.textoBoton}>Práctica Pressable</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('Switch')}>
-                        <Text style={styles.textoBoton}>Práctica Switch</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('Switch')}>
+                            <Text style={styles.textoBoton}>Práctica Switch</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('Componente4_0')}>
-                        <Text style={styles.textoBoton}>Práctica TextInput</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('Componente4_0')}>
+                            <Text style={styles.textoBoton}>Práctica TextInput</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('ComponenteAlert')}>
-                        <Text style={styles.textoBoton}>Práctica Alert</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('ComponenteAlert')}>
+                            <Text style={styles.textoBoton}>Práctica Alert</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('FlatListScreen')}>
-                        <Text style={styles.textoBoton}>Práctica FlatList</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('FlatListScreen')}>
+                            <Text style={styles.textoBoton}>Práctica FlatList</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('SectionListScreen')}>
-                        <Text style={styles.textoBoton}>Práctica SectionList</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('SectionListScreen')}>
+                            <Text style={styles.textoBoton}>Práctica SectionList</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('ImagenFondo')}>
-                        <Text style={styles.textoBoton}>Práctica ImagenFondo</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('ImagenFondo')}>
+                            <Text style={styles.textoBoton}>Práctica ImagenFondo</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('SplashScreen')}>
-                        <Text style={styles.textoBoton}>Práctica SplashScreen</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('SplashScreen')}>
+                            <Text style={styles.textoBoton}>Práctica SplashScreen</Text>
+                        </Pressable>
 
-                    <Pressable style={styles.boton} onPress={() => setScreen('componentesNativos')}>
-                        <Text style={styles.textoBoton}>Práctica KeyAvoiding y ActivityIndicator</Text>
-                    </Pressable>
+                        <Pressable style={styles.boton} onPress={() => setScreen('componentesNativos')}>
+                            <Text style={styles.textoBoton}>Práctica KeyAvoiding y ActivityIndicator</Text>
+                        </Pressable>
 
-                </View>
+                    </ScrollView>
+                </SafeAreaView>
             );
     }
 }
@@ -145,15 +151,17 @@ export default function App() {
 const styles = StyleSheet.create({
 
     container: {
-        flex: 1,
+        flexGrow: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        paddingTop: 25,
+        paddingBottom: 30,
     },
 
     titulo: {
         fontSize: 28,
         fontWeight: 'bold',
+        marginTop: 10,
         marginBottom: 30,
     },
 
@@ -165,8 +173,8 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         alignItems: 'center',
 
-        elevation: 4, // Android
-        shadowColor: '#000', // iOS
+        elevation: 4,
+        shadowColor: '#000',
         shadowOpacity: 0.25,
         shadowRadius: 4,
         shadowOffset: {
@@ -176,9 +184,9 @@ const styles = StyleSheet.create({
     },
 
     textoBoton: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-},
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
 });

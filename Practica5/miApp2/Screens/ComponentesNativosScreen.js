@@ -20,7 +20,7 @@
             contentContainerStyle={styles.container}
             keyboardShouldPersistTaps="handled"
         >
-            <Text style={styles.encabezado}>Práctica 9</Text>
+            <Text style={styles.encabezado}>Práctica 16</Text>
             <Text style={styles.subtitulo}>Componentes Nativos</Text>
 
             <ActivityIndicatorDemo />
