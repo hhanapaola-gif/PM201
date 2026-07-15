@@ -83,6 +83,7 @@ export default function App() {
       <ImageBackground
         source={require('./assets/fondo.jpeg')}
         style={styles.fondo}
+        imageStyle={{opacity: 0.8}}
       >
 
         <SafeAreaView style={styles.contenedor}>

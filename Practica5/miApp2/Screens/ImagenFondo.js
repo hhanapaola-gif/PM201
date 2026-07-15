@@ -15,7 +15,6 @@ export const ImagenFondo = () => {
             style={styles.container}
             source={fondo ? fondo_1 : fondo_2}
             resizeMode='cover'
-            imageStyle={{opacity: 0.8}}
             blurRadius={6}
         >
             <View style={styles.vista}>

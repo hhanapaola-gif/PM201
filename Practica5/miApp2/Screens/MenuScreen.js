@@ -1,9 +1,9 @@
 /* Zona 1: Importaciones de archivos y componentes */
 
-import { StyleSheet, Text, View, Pressable, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, Pressable, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-import React, { Component, useEffect, useState } from 'react';
+
 import TarjetasScreen from './TarjetasScreen';
 import Componente1 from './Componente1';
 import PracticaGena from './PracticaGena';
@@ -16,8 +16,6 @@ import SectionListScreen from './SectionListScreen';
 import { ImagenFondo } from './ImagenFondo';
 import { Home } from './Home';
 import { SplashScreen } from './SplashScreen';
-import { BottomSheet } from '../components/BottomSheet';
-import { Modal } from 'react-native';
 import ComponentesNativosScreen from './ComponentesNativosScreen';
 
 /* Zona 2: Main - Componentes */
@@ -31,6 +29,7 @@ export default function App() {
             const timer = setTimeout(() => {
                 setScreen('Home');
             }, 5000);
+
             return () => clearTimeout(timer);
         }
     }, [screen]);
@@ -65,19 +64,13 @@ export default function App() {
             return <SectionListScreen />;
 
         case 'ImagenFondo':
-            return <ImagenFondo style={styles.container} />;
+            return <ImagenFondo />;
 
         case 'SplashScreen':
             return <SplashScreen />;
 
         case 'Home':
             return <Home />;
-
-        case 'Modal':
-            return <Modal />;
-
-        case 'BottomSheet':
-            return <BottomSheet />;
 
         case 'componentesNativos':
             return <ComponentesNativosScreen />;
@@ -89,7 +82,6 @@ export default function App() {
                         contentContainerStyle={styles.container}
                         showsVerticalScrollIndicator={false}
                     >
-
                         <Text style={styles.titulo}>MENÚ DE PRÁCTICAS</Text>
 
                         <Pressable style={styles.boton} onPress={() => setScreen('tarjetas')}>
@@ -137,7 +129,9 @@ export default function App() {
                         </Pressable>
 
                         <Pressable style={styles.boton} onPress={() => setScreen('componentesNativos')}>
-                            <Text style={styles.textoBoton}>Práctica KeyAvoiding y ActivityIndicator</Text>
+                            <Text style={styles.textoBoton}>
+                                Práctica KeyAvoiding y ActivityIndicator
+                            </Text>
                         </Pressable>
 
                     </ScrollView>
@@ -149,7 +143,6 @@ export default function App() {
 /* Zona 3: Estilos */
 
 const styles = StyleSheet.create({
-
     container: {
         flexGrow: 1,
         backgroundColor: '#fff',

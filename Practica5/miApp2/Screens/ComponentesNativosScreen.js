@@ -9,7 +9,7 @@
 
     import ActivityIndicatorCarga from '../components/ActivityIndicatorCarga';
     import ActivityIndicatorDemo from '../components/ActivityIndicatorDemo';
-    import KeyboardAvoidingDemo from '../components/KeyboardAvoidingDemo';
+    //import KeyboardAvoidingDemo from '../components/KeyboardAvoidingDemo';
 
     export default function ComponentesNativosScreen() {
     return (
@@ -23,9 +23,10 @@
             <Text style={styles.encabezado}>Práctica 16</Text>
             <Text style={styles.subtitulo}>Componentes Nativos</Text>
 
+
             <ActivityIndicatorDemo />
             <ActivityIndicatorCarga />
-            <KeyboardAvoidingDemo />
+            {/* <KeyboardAvoidingDemo /> */}
         </ScrollView>
         </View>
     );
